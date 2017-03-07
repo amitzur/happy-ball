@@ -22,6 +22,12 @@ class App extends Component {
         this.tick();
     }
 
+    onResize() {
+        let scale = this.props.scale + 0.5;
+        if (scale > 5) scale = 1;
+        this.props.resize(scale);
+    }
+
     tick() {
         if (curPos.left !== this.prevLeft || curPos.top !== this.prevTop) {
             this.props.move(curPos.left, curPos.top);
@@ -35,7 +41,16 @@ class App extends Component {
     }
 
     render() {
-        return <Ball left={this.props.left - this.props.size/2} top={this.props.top - this.props.size/2} />
+        return <div>
+            <button onClick={this.onResize.bind(this)}>Resize</button>
+            <Ball
+                left={this.props.left - this.props.size/2}
+                top={Math.max(100, this.props.top - this.props.size/2)}
+                transform={`scale(${this.props.scale})`}
+                height={this.props.size}
+                width={this.props.size}
+            />
+        </div>
     }
 }
 
@@ -44,6 +59,10 @@ const mapStateToProps = state => state;
 const mapDispatchToProps = dispatch => ({
     move: (left, top) => {
         dispatch({ type: "move", left, top });
+    },
+
+    resize: scale => {
+        dispatch({ type: "resize", scale });
     }
 });
 

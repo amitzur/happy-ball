@@ -4,4 +4,6 @@
     border-radius: 50%;
     background: #ebebeb;
     position: absolute;
+    transform-origin: center;
+    transition: transform 0.3s;
 }

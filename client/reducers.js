@@ -7,7 +7,7 @@ const move = (state, action) => {
 
 const resize = (state, action) => {
     return {
-        size: action.size
+        scale: action.scale
     };
 };
 

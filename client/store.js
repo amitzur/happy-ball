@@ -3,7 +3,7 @@ import isMaster from "./is-master";
 import Reflect from "./reflect";
 import reducers from "./reducers";
 
-const initialState = { left: 100, top: 100, size: 40 };
+const initialState = { left: 100, top: 100, size: 40, scale: 1 };
 
 function reducer(state, action) {
     if (typeof state === "undefined") {
