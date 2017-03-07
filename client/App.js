@@ -55,11 +55,20 @@ class App extends Component {
 
     render() {
         return <div>
-            <button onClick={this.onResize.bind(this)}>Resize</button>
+            <div className="toolbar">
+                <div className="info">
+                    <div className="icon"></div>
+                    <div>
+                        <div className="title">Happy Ball</div>
+                        <div className="subtitle">Click on the ball to stop tracking it</div>
+                    </div>
+                </div>
+                <button onClick={this.onResize.bind(this)}>Resize</button>
+            </div>
             <Ball
                 style={{
                     left      : this.props.left - this.props.size/2,
-                    top       : Math.max(100, this.props.top - this.props.size/2),
+                    top       : Math.max(156, this.props.top - this.props.size/2),
                     transform : `scale(${this.props.scale})`,
                     height    : this.props.size,
                     width     : this.props.size

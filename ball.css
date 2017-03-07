@@ -1,3 +1,13 @@
+body {
+    margin: 0;
+    font-size: 16px;
+    font-family: Avenir, "Helvetica Neue", arial, sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+}
+
 .ball {
     height: 40px;
     width: 40px;
@@ -10,4 +20,63 @@
 
 .ball.highlighted:hover {
     border: 2px solid salmon;
+}
+
+.icon {
+    background: #fff;
+    border-radius: 50%;
+    height: 44px;
+    width: 44px;
+}
+
+.title {
+
+}
+
+.subtitle {
+    font-size: 0.8rem;
+}
+
+.info {
+    display: flex;
+    align-items: center;
+}
+
+.info > *:not(:last-child) {
+    margin-right: 8px;
+}
+
+.toolbar {
+    background: #18b4f6;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px;
+    color: #fff;
+}
+
+.toolbar > *:not(:last-child) {
+    margin-right: 8px;
+}
+
+button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background: transparent;
+    outline: none;
+    border: none;
+    height: 44px;
+    width: 44px;
+    border-radius: 50%;
+    padding: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: rgba(0,0,0,0.2);
+}
+
+button:active {
+    background: rgba(0,0,0,0.5);
 }
