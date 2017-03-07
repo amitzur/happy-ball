@@ -22,6 +22,15 @@ class App extends Component {
         this.tick();
     }
 
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.tracking && !this.props.tracking) {
+            this.tick();
+        } else if (!nextProps.tracking && this.props.tracking) {
+            cancelAnimationFrame(this.cRAF);
+            delete this.cRAF;
+        }
+    }
+
     onResize() {
         let scale = this.props.scale + 0.5;
         if (scale > 5) scale = 1;
@@ -37,18 +46,26 @@ class App extends Component {
             this.prevTop = curPos.top;
         }
 
-        requestAnimationFrame(this.tick);
+        this.cRAF = requestAnimationFrame(this.tick);
+    }
+
+    onBallClick() {
+        this.props.toggleTrack();
     }
 
     render() {
         return <div>
             <button onClick={this.onResize.bind(this)}>Resize</button>
             <Ball
-                left={this.props.left - this.props.size/2}
-                top={Math.max(100, this.props.top - this.props.size/2)}
-                transform={`scale(${this.props.scale})`}
-                height={this.props.size}
-                width={this.props.size}
+                style={{
+                    left      : this.props.left - this.props.size/2,
+                    top       : Math.max(100, this.props.top - this.props.size/2),
+                    transform : `scale(${this.props.scale})`,
+                    height    : this.props.size,
+                    width     : this.props.size
+                }}
+                onClick={e => this.onBallClick(e)}
+                className={this.props.tracking ? "" : "highlighted"}
             />
         </div>
     }
@@ -63,6 +80,10 @@ const mapDispatchToProps = dispatch => ({
 
     resize: scale => {
         dispatch({ type: "resize", scale });
+    },
+
+    toggleTrack: () => {
+        dispatch({ type: "toggle_track" });
     }
 });
 

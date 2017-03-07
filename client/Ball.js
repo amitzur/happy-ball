@@ -1,7 +1,9 @@
 import React, { Component } from "react";
+import classnames from "classnames";
 
 export default class Ball extends Component {
     render() {
-        return <div className="ball" style={this.props}/>
+        const className = classnames("ball", this.props.className);
+        return <div className={className} style={this.props.style} onClick={this.props.onClick} />
     }
 }

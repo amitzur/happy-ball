@@ -11,7 +11,14 @@ const resize = (state, action) => {
     };
 };
 
+const toggle_track = (state, action) => {
+    return {
+        tracking: !state.tracking
+    }
+};
+
 export default {
     move,
-    resize
+    resize,
+    toggle_track
 };
