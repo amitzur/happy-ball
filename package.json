@@ -19,6 +19,7 @@
     "busmq": "^2.0.0",
     "classnames": "^2.2.5",
     "connect": "^3.6.0",
+    "dotenv": "^4.0.0",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "react-redux": "^5.0.3",

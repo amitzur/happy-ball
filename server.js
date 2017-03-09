@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const http = require("http");
 const connect = require("connect");
 const serveStatic = require("serve-static");
@@ -10,7 +12,7 @@ server.listen(7000);
 
 const Bus = require("busmq");
 const options = {
-    redis: ["redis://localhost:6379"],
+    redis: [process.env.REDIS_URL],
     federate: {
         server,
         secret: "nosecret",
