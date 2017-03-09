@@ -16,7 +16,7 @@ const listen = function(name, onMessage) {
     createQueue.call(this, name).then(q => {
         q.on("message", (message, id) => {
             console.log("got bus message [" + id + "]: ", message);
-            onMessage(message);
+            onMessage(JSON.parse(message));
         });
 
         q.consume();

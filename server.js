@@ -1,40 +1,22 @@
 require('dotenv').config();
 
 const http = require("http");
-const connect = require("connect");
-const serveStatic = require("serve-static");
-const app = connect();
+const express = require("express");
+const app = express();
 
-app.use(serveStatic("."));
+app.use(express.static("."));
+
+const options = Object.assign({
+    port: 7000,
+    lite: false
+}, require("minimist")(process.argv.slice(2)));
 
 const server = http.createServer(app);
-server.listen(7000);
+server.listen(options.port);
 
-const Bus = require("busmq");
-const options = {
-    redis: [process.env.REDIS_URL],
-    federate: {
-        server,
-        secret: "nosecret",
-        path: "/bus"
-    }
-};
-
-const bus = Bus.create(options);
-
-bus.on("error", err => console.error(String(err)));
-
-bus.on("online", () => {
-    console.log("online");
-
-    const q = bus.queue("happy-ball");
-    q.on("attached", () => {
-        console.log("attached to queue");
-    });
-
-    q.attach();
-});
-
-bus.on("offline", () =>  console.log("offline"));
-
-bus.connect();
+if (options.lite) {
+    console.log("running lite");
+    require("./lite")(server);
+} else {
+    require("./bus-client")(server);
+}
