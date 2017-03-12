@@ -2,7 +2,7 @@
   "name": "happy-ball",
   "version": "1.0.0",
   "description": "An app with a ball",
-  "main": "index.js",
+  "main": "server.js",
   "repository": "https://github.com/amitzur/happy-ball",
   "author": "Amit Zur",
   "license": "MIT",
@@ -27,6 +27,7 @@
     "redux": "^3.6.0",
     "rollup": "^0.41.4",
     "socket.io": "^1.7.3",
+    "socket.io-redis": "^4.0.0",
     "uglifyjs": "^2.4.10"
   }
 }

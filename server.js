@@ -14,9 +14,9 @@ const options = Object.assign({
 const server = http.createServer(app);
 server.listen(options.port);
 
-if (options.lite) {
-    console.log("running lite");
+// if (options.lite) {
+//     console.log("running lite");
     require("./lite")(server);
-} else {
-    require("./bus-client")(server);
-}
+// } else {
+//     require("./bus-client")(server);
+// }

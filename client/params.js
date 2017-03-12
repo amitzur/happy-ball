@@ -1,11 +1,13 @@
-const params = new URL(location).searchParams;
+const urlParams = new URL(location).searchParams;
 
-const isMaster = params.has("master");
-const isLite = params.has("lite");
+const isMaster = urlParams.has("master");
+const isLite = urlParams.has("lite");
 
-console.log(isMaster ? "I'm the master!" : "I'm your slave");
-
-export default {
+const params = {
     isMaster,
     isLite
 };
+
+console.log("params: ", params);
+
+export default params;

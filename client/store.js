@@ -1,5 +1,5 @@
 import { createStore, applyMiddleware } from "redux";
-import { isMaster, isLite } from "./params";
+import params from "./params";
 import Reflect from "./reflect";
 import LiteReflect from "./lite-reflect";
 import reducers from "./reducers";
@@ -27,14 +27,14 @@ const logger = ({ getState, dispatch }) => next => action => {
 };
 
 
-const ReflectClass = isLite ? LiteReflect : Reflect;
+const ReflectClass = params.isLite ? LiteReflect : Reflect;
 const reflect = new ReflectClass("ws://localhost:7000/bus", "nosecret");
 
-const middleware = isMaster ? [logger, reflect.createMiddleware("happy-ball")] : [logger];
+const middleware = params.isMaster ? [reflect.createMiddleware("happy-ball")] : [logger];
 
 const store = createStore(reducer, applyMiddleware(...middleware));
 
-if (!isMaster) {
+if (!params.isMaster) {
     reflect.listen("happy-ball", action => {
         store.dispatch(action);
     });

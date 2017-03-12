@@ -49,6 +49,7 @@ const createQueue = function(name) {
 };
 
 const Reflect = function(url, secret) {
+    console.log("reflect");
     this.bus = busmq(url, secret);
 
     this.bus.on("online", () => {

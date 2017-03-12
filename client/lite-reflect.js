@@ -1,4 +1,5 @@
 const LiteReflect = function() {
+    console.log("lite reflect");
     this.socket = io();
 };
 
