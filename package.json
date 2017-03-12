@@ -8,7 +8,8 @@
   "license": "MIT",
   "scripts": {
     "busmq": "cd node_modules/busmq && yarn browser && cd ../..",
-    "start": "node server"
+    "start": "node server",
+    "watch": "webpack --watch --progress"
   },
   "dependencies": {
     "babel-core": "^6.23.1",

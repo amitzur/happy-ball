@@ -1,5 +1,5 @@
 module.exports = {
-    devtool: "cheap-eval-source-map",
+    devtool: "source-map",
     entry: './client/index.js',
     output: {
         filename: './dist/happy-ball.js'
